@@ -15,7 +15,9 @@
 #' If an error or warning occurs, a message will be printed to the console and
 #' the function will return NULL.
 #'
-#' @importFrom dplyr mutate rename select
+#' @importFrom dplyr arrange desc mutate rename select
+#'
+#' @importFrom magrittr %>%
 #'
 #' @examples
 #' \dontrun{
@@ -33,6 +35,7 @@ create_table <- function(source, dec_pos = 2) {
 
             source <- source %>%
                   dplyr::rename(count = V1) %>%
+                  dplyr::arrange(dplyr::desc(count)) %>%
                   dplyr::mutate(group = rownames(source),
                                 cumulative_count = cumsum(count),
                                 frequency = round(count / sum(count), dec_pos),

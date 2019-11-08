@@ -1,4 +1,4 @@
-context("get_groups")
+context("create_table")
 
 
 test_that("function returns a numeric value", {

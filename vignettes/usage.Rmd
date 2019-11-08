@@ -1,5 +1,7 @@
 ---
-title: "usage"
+title: "Using the fdistr Package"
+author: "Donnie Minnick"
+date: "`r Sys.date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{usage}
@@ -17,3 +19,5 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(fdistr)
 ```
+
+
