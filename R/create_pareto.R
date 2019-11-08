@@ -8,11 +8,8 @@
 #' @return A plot containing a Pareto chart.  If an error or warning occurs,
 #' a message will be printed to the console and the function will return NULL.
 #'
-#' @importFrom dplyr arrange desc mutate rename select
-#'
-#' @importFrom ggplot2
-#'
-#' @importFrom magrittr %>%
+#' @importFrom ggplot2 aes annotate geom_bar geom_line geom_point geom_segment
+#' ggplot guides labs scale_x_discrete scale_y_continuous
 #'
 #' @examples
 #' \dontrun{
@@ -25,9 +22,13 @@ create_pareto <- function(df) {
 
       tryCatch({
 
-            ticks <- data.frame(xtick0 = rep(nrow(df) + .55, 11),
-                                xtick1 = rep(nrow(df) + .59, 11),
-                                ytick = seq(0, sum(df$frequency), sum(df$frequency)/10))
+            nr <- nrow(df)
+
+            num <- sum(df$frequency)
+
+            ticks <- data.frame(xtick0 = rep(nr + .55, 11),
+                                xtick1 = rep(nr + .59, 11),
+                                ytick = seq(0, num, num / 10))
 
             y2 <- c("  0%",
                     " 10%",
@@ -41,8 +42,52 @@ create_pareto <- function(df) {
                     " 90%",
                     "100%")
 
-            g <- ggplot2:ggplot(df, aes(x = modality, y = frequency)) +
-                  geom_bar(stat = "identity", aes(fill = modality_int))
+            g <- ggplot2::ggplot(df, ggplot2::aes(x = group, y = frequency)) +
+
+                 ggplot2::geom_bar(stat = "identity", ggplot2::aes(fill = group)) +
+
+                 ggplot2::geom_line(ggplot2::aes(x = group,
+                                                 y = cumulative_frequency,
+                                                 color = "black")) +
+
+                 ggplot2::geom_point(ggplot2::aes(x = group,
+                                                  y = cumulative_frequency,
+                                                  color = group), pch = 19) +
+
+                 ggplot2::scale_y_continuous(breaks = seq(0, num, num / 10),
+                                             limits = c(-.02 * num, num * 1.02)) +
+
+                 ggplot2::scale_x_discrete(breaks = df$group) +
+
+                 ggplot2::guides(fill = FALSE, color = FALSE) +
+
+                 ggplot2::annotate("rect",
+                                   xmin = nr + .55,
+                                   xmax = nr + 1,
+                                   ymin = -.02 * num,
+                                   ymax = num * 1.02,
+                                   fill = "white") +
+
+                 ggplot2::annotate("text",
+                                   x = nr + .8,
+                                   y = seq(0, num, num / 10),
+                                   label = y2,
+                                   size = 3.5) +
+
+                 ggplot2::geom_segment(x = nr + .55,
+                                       xend = nr + .55,
+                                       y = -.02 * num,
+                                       yend = num * 1.02,
+                                       color = "grey50") +
+
+                 ggplot2::geom_segment(data = ticks,
+                                       ggplot2::aes(x = xtick0,
+                                                    y = ytick,
+                                                    xend = xtick1,
+                                                    yend = ytick)) +
+
+                 ggplot2::labs(title = "Pareto Chart",
+                               y = "Frequency")
 
       }, warning = function(w) {
 
@@ -60,6 +105,6 @@ create_pareto <- function(df) {
 
       })
 
-      return(source)
+      return(g)
 
 }
