@@ -37,7 +37,11 @@
 #'
 #' @export
 
-create_table <- function(source, dec_pos = 2, use_groups = FALSE, use_log = FALSE, groups = 8) {
+create_table <- function(source,
+                         dec_pos = 2,
+                         use_groups = FALSE,
+                         use_log = FALSE,
+                         groups = 8) {
 
       tryCatch({
 
@@ -63,9 +67,9 @@ create_table <- function(source, dec_pos = 2, use_groups = FALSE, use_log = FALS
 
             source <- source %>%
                   dplyr::rename(count = V1) %>%
+                  dplyr::mutate(group = rownames(source)) %>%
                   dplyr::arrange(dplyr::desc(count)) %>%
-                  dplyr::mutate(group = rownames(source),
-                                cumulative_count = cumsum(count),
+                  dplyr::mutate(cumulative_count = cumsum(count),
                                 frequency = round(count / sum(count), dec_pos),
                                 cumulative_frequency = round(cumulative_count / sum(count), dec_pos)) %>%
                   dplyr::select(group,
