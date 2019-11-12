@@ -42,79 +42,29 @@ create_pareto <- function(df,
 
       tryCatch({
 
-            nr <- nrow(df)
+         g <- ggplot2::ggplot(df, ggplot2::aes(x = reorder(group, -count))) +
 
-            num <- sum(df$frequency)
+               ggplot2::geom_bar(ggplot2::aes(y = count),
+                                 fill = "blue",
+                                 stat = "identity") +
 
-            ticks <- data.frame(xtickp = rep(nr + .55, 11),
-                                xticks = rep(nr + .59, 11),
-                                ytick = seq(0, num, num / 10))
+               ggplot2::geom_point(ggplot2::aes(y = cumulative_count),
+                                   color = "green",
+                                   pch = 16,
+                                   size = 1) +
 
-            y2 <- c("  0%",
-                    " 10%",
-                    " 20%",
-                    " 30%",
-                    " 40%",
-                    " 50%",
-                    " 60%",
-                    " 70%",
-                    " 80%",
-                    " 90%",
-                    "100%")
+               ggplot2::geom_path(ggplot2::aes(y = cumulative_count, group = 1),
+                                  colour = "darkgrey",
+                                  lty = 3,
+                                  size = 0.9) +
 
-            color_palette <- colorRampPalette(colors = c("steelblue", "darkblue"))(nr)
+               ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.6)) +
 
-            g <- ggplot2::ggplot(df, ggplot2::aes(x = group, y = frequency)) +
-
-                 ggplot2::geom_bar(stat = "identity", ggplot2::aes(fill = group)) +
-
-                 ggplot2::geom_line(ggplot2::aes(x = group,
-                                                 y = cumulative_frequency,
-                                                 color = group)) +
-
-                 ggplot2::geom_point(ggplot2::aes(x = group,
-                                                  y = cumulative_frequency,
-                                                  color = group), pch = 19) +
-
-                 ggplot2::scale_y_continuous(breaks = seq(0, num, num / 10),
-                                             limits = c(-.02 * num, num * 1.02)) +
-
-                 ggplot2::scale_x_discrete(breaks = df$group) +
-
-                 # ggplot2::scale_fill_manual(values = color_palette) +
-
-                 ggplot2::guides(fill = FALSE, color = FALSE) +
-
-                 ggplot2::annotate("rect",
-                                   xmin = nr + .55,
-                                   xmax = nr + 1,
-                                   ymin = -.02 * num,
-                                   ymax = num * 1.02,
-                                   fill = "white") +
-
-                 ggplot2::annotate("text",
-                                   x = nr + .8,
-                                   y = seq(0, num, num / 10),
-                                   label = y2,
-                                   size = 3.5) +
-
-                 ggplot2::geom_segment(x = nr + .55,
-                                       xend = nr + .55,
-                                       y = -.02 * num,
-                                       yend = num * 1.02,
-                                       color = "black") +
-
-                 ggplot2::geom_segment(data = ticks,
-                                       ggplot2::aes(x = xtickp,
-                                                    y = ytick,
-                                                    xend = xticks,
-                                                    yend = ytick)) +
-
-                 ggplot2::labs(title = title,
-                               subtitle = subtitle,
-                               caption = caption,
-                               x = x_label,
-                               y = y_label)
+               ggplot2::labs(title = title,
+                             subtitle = subtitle,
+                             caption = caption,
+                             x = x_label,
+                             y = y_label)
 
       }, warning = function(w) {
 

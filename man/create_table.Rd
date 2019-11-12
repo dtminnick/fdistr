@@ -4,13 +4,24 @@
 \alias{create_table}
 \title{Create Table}
 \usage{
-create_table(source, dec_pos = 2)
+create_table(source, dec_pos = 2, use_groups = FALSE,
+  use_log = FALSE, groups = 8)
 }
 \arguments{
-\item{source}{vector, list or data frame input.}
+\item{source}{Vector, list or data frame input.  If the source is of class
+list, it will be simplified to a vector using \code{unlist}.}
 
 \item{dec_pos}{Number of positions to return in the frequency and cumulative
 frequency variables.  Defaults to two positions following the decimal.}
+
+\item{use_groups}{Logical; identifies whether or not to use grouping when
+assembling the frequency distribution table.  Default is FALSE.}
+
+\item{use_log}{Logical; if using groups, whether or not to use a logarithm to
+generate the number of groups.  Default is FALSE.}
+
+\item{groups}{Integer; if using groups, the number of groups to generate.
+Default is 8.}
 }
 \value{
 A data frame containing the frequency distribution table.
