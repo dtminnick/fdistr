@@ -1,7 +1,8 @@
 
 #' Create Pareto Chart
 #'
-#' \code{create_pareto} generates a Pareto chart...
+#' \code{create_pareto} generates a Pareto chart using the group, frequency and
+#' cumulative frequency columns of a frequency distribution table.
 #'
 #' @param df Data frame containing a frequency distribution table.
 #'
@@ -23,12 +24,12 @@
 #' @return A plot containing a Pareto chart.  If an error or warning occurs,
 #' a message will be printed to the console and the function will return NULL.
 #'
-#' @importFrom ggplot2 aes annotate geom_bar geom_line geom_point geom_segment
-#' ggplot guides labs scale_x_discrete scale_y_continuous
+#' @importFrom ggplot2 aes element_text geom_bar geom_path geom_point
+#' geom_text ggplot labs theme
 #'
 #' @examples
 #' \dontrun{
-#'
+#' plot <- create_pareto(df)
 #' }
 #'
 #' @export
@@ -42,23 +43,23 @@ create_pareto <- function(df,
 
       tryCatch({
 
-         g <- ggplot2::ggplot(df, ggplot2::aes(x = reorder(group, -count))) +
+         g <- ggplot2::ggplot(df, ggplot2::aes(x = reorder(group, -frequency))) +
 
-               ggplot2::geom_bar(ggplot2::aes(y = count),
+               ggplot2::geom_bar(ggplot2::aes(y = frequency),
                                  fill = "blue",
                                  stat = "identity") +
 
-               ggplot2::geom_point(ggplot2::aes(y = cumulative_count),
+               ggplot2::geom_point(ggplot2::aes(y = cumulative_frequency),
                                    color = "green",
                                    pch = 16,
                                    size = 1) +
 
-               ggplot2::geom_path(ggplot2::aes(y = cumulative_count, group = 1),
+               ggplot2::geom_path(ggplot2::aes(y = cumulative_frequency, group = 1),
                                   colour = "darkgrey",
                                   lty = 3,
                                   size = 0.9) +
 
-               ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 0.6)) +
+               ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 0, vjust = 0.6)) +
 
                ggplot2::labs(title = title,
                              subtitle = subtitle,

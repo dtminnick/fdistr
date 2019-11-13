@@ -1,3 +1,4 @@
+
 #' Create Table
 #'
 #' \code{create_table} generates a frequency distribution table from a vector,
@@ -12,22 +13,13 @@
 #' @param dec_pos Number of positions to return in the frequency and cumulative
 #' frequency variables.  Defaults to two positions following the decimal.
 #'
-#' @param use_groups Logical; identifies whether or not to use grouping when
-#' assembling the frequency distribution table.  Default is FALSE.
-#'
-#' @param use_log Logical; if using groups, whether or not to use a logarithm to
-#' generate the number of groups.  Default is FALSE.
-#'
-#' @param groups Integer; if using groups, the number of groups to generate.
-#' Default is 8.
-#'
 #' @return A data frame containing the frequency distribution table.
 #' If an error or warning occurs, a message will be printed to the console and
 #' the function will return NULL.
 #'
 #' @importFrom dplyr arrange desc mutate rename select
 #'
-#' @importFrom magrittr %>%
+#' @importFrom magrittr "%>%"
 #'
 #' @examples
 #' \dontrun{
@@ -38,10 +30,7 @@
 #' @export
 
 create_table <- function(source,
-                         dec_pos = 2,
-                         use_groups = FALSE,
-                         use_log = FALSE,
-                         groups = 8) {
+                         dec_pos = 2) {
 
       tryCatch({
 
@@ -52,18 +41,6 @@ create_table <- function(source,
             }
 
             source <- as.data.frame(cbind(table(source)))
-
-            if(use_groups == TRUE) {
-
-                  if(use_log == TRUE) {
-
-                        groups = ceiling(log(nrow(source))/log(2))
-
-                  }
-
-
-
-            }
 
             source <- source %>%
                   dplyr::rename(count = V1) %>%

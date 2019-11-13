@@ -30,11 +30,12 @@ A plot containing a Pareto chart.  If an error or warning occurs,
 a message will be printed to the console and the function will return NULL.
 }
 \description{
-\code{create_pareto} generates a Pareto chart...
+\code{create_pareto} generates a Pareto chart using the group, frequency and
+cumulative frequency columns of a frequency distribution table.
 }
 \examples{
 \dontrun{
-
+plot <- create_pareto(df)
 }
 
 }
