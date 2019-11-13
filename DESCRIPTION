@@ -1,11 +1,12 @@
 Package: fdistr
 Type: Package
-Title: Generate Frequency Distribution Table
+Title: Generate Frequency Distribution Tables
 Version: 0.1.0
 Date: 2019-11-06
 Authors@R: as.person(c("Donnie Minnick <donnie.minnick@gmail.com> [aut, cre]"))
-Description: This package provides functionality to generate frequency distribution
-   tables from a set of observations.
+Description: This package provides functionality to generate a frequency 
+    distribution table from a set of observations and plot the frequency
+    distribution using a Pareto chart.
 Depends: R (>= 3.6)
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -13,10 +14,7 @@ LazyData: true
 Imports:
     dplyr (>= 0.8.3),
     ggplot2 (>= 3.1.1),
-    leaflet (>= 2.0.2),
-    lubridate (>= 1.7.4),
     magrittr (>= 1.5),
-    stringr (>= 1.4.0),
     usethis (>= 1.5.1),
     utils (>= 3.6.1)
 Suggests:

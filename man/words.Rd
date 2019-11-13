@@ -17,7 +17,7 @@ The dataset includes the four variables.
 \describe{
 \item{\code{word}}{Character, word in the sample.}
 \item{\code{first_letter}}{Character, first letter of the word.}
-\item{\code(last_letter)}{Character, last letter of the word.}
+\item{\code{last_letter}}{Character, last letter of the word.}
 \item{\code{letter_count}}{Integer, number of letters in the word.}
 }
 }

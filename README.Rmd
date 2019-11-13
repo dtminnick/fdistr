@@ -16,9 +16,18 @@ knitr::opts_chunk$set(
 # fdistr
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.org/dtminnick/fdistr.svg?branch=master)](https://travis-ci.org/dtminnick/fdistr)
 <!-- badges: end -->
 
-The goal of fdistr is to ...
+The goal of fdistr is to provide an efficient way to create frequency distribution
+tables and use those tables to generate Pareto charts.  
+
+A frequency distribution is a table that shows the frequency of various outcomes
+in a data set.  Each entry in the table contains a frequency or count of the 
+occurrences of values within a particular group or interval, and in this way, 
+the table summarizes the distribution of values in the data set.  
+
+A Pareto chart is a bar graph visually depicts the frequency distribution table.
 
 ## Installation
 
@@ -36,9 +45,12 @@ devtools::install_github("dtminnick/fdistr")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to use the fdistr package.
 
 ```{r example}
 # library(fdistr)
-## basic example code
+# data(words)
+# table <- create_table(words$first_letter)
+# table
+# create_pareto(table)
 ```
