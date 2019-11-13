@@ -34,6 +34,9 @@ create_table <- function(source,
 
       tryCatch({
 
+            V1 <- count <- cumulative_count <- NULL
+            group <- frequency <- cumulative_frequency <- NULL
+
             if(class(source) == "list") {
 
                   source <- unlist(source)

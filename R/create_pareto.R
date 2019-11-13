@@ -27,6 +27,8 @@
 #' @importFrom ggplot2 aes element_text geom_bar geom_path geom_point
 #' geom_text ggplot labs theme
 #'
+#' @importFrom stats reorder
+#'
 #' @examples
 #' \dontrun{
 #' plot <- create_pareto(df)
@@ -43,29 +45,31 @@ create_pareto <- function(df,
 
       tryCatch({
 
-         g <- ggplot2::ggplot(df, ggplot2::aes(x = reorder(group, -frequency))) +
+            group <- frequency <- cumulative_frequency <- NULL
 
-               ggplot2::geom_bar(ggplot2::aes(y = frequency),
-                                 fill = "blue",
-                                 stat = "identity") +
+            g <- ggplot2::ggplot(df, ggplot2::aes(x = stats::reorder(group, -frequency))) +
 
-               ggplot2::geom_point(ggplot2::aes(y = cumulative_frequency),
-                                   color = "green",
-                                   pch = 16,
-                                   size = 1) +
+                  ggplot2::geom_bar(ggplot2::aes(y = frequency),
+                                    fill = "blue",
+                                    stat = "identity") +
 
-               ggplot2::geom_path(ggplot2::aes(y = cumulative_frequency, group = 1),
-                                  colour = "darkgrey",
-                                  lty = 3,
-                                  size = 0.9) +
+                  ggplot2::geom_point(ggplot2::aes(y = cumulative_frequency),
+                                      color = "green",
+                                      pch = 16,
+                                      size = 1) +
 
-               ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 0, vjust = 0.6)) +
+                  ggplot2::geom_path(ggplot2::aes(y = cumulative_frequency, group = 1),
+                                     colour = "darkgrey",
+                                     lty = 3,
+                                     size = 0.9) +
 
-               ggplot2::labs(title = title,
-                             subtitle = subtitle,
-                             caption = caption,
-                             x = x_label,
-                             y = y_label)
+                  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 0, vjust = 0.6)) +
+
+                  ggplot2::labs(title = title,
+                                subtitle = subtitle,
+                                caption = caption,
+                                x = x_label,
+                                y = y_label)
 
       }, warning = function(w) {
 

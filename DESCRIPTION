@@ -15,6 +15,7 @@ Imports:
     dplyr (>= 0.8.3),
     ggplot2 (>= 3.1.1),
     magrittr (>= 1.5),
+    stats (>= 3.6.1),
     usethis (>= 1.5.1),
     utils (>= 3.6.1)
 Suggests:
