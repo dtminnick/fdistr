@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 The goal of fdistr is to provide an efficient way to create frequency distribution
 tables and use those tables to generate Pareto charts.  
 
-A frequency distribution is a table that shows the frequency of various outcomes
+Frequency distribution tables are used to show the frequency of various outcomes
 in a data set.  Each entry in the table contains a frequency or count of the 
 occurrences of values within a particular group or interval, and in this way, 
 the table summarizes the distribution of values in the data set.  
@@ -45,12 +45,41 @@ devtools::install_github("dtminnick/fdistr")
 ```
 ## Example
 
-This is a basic example which shows you how to use the fdistr package.
+What follows is a basic example which shows you how to use the fdistr package with the built-in `words` dataset.
 
-```{r example}
-# library(fdistr)
-# data(words)
-# table <- create_table(words$first_letter)
-# table
-# create_pareto(table)
+Start by loading the `words` dataset.  The dataset contains a data frame with four variables about a collection of words taken from the first paragraph of James Joyce's short story "The Dead."  
+
+```{r}
+library(fdistr)
+
+data(words)
+
+str(words)
+```
+
+It is possible to create a frequency distribution table with any of the four
+variables in this table.  For this example, pass the `first_letter` variable to the `create_table` function and return the table (stored as a data frame) to a variable
+called `table`.  Use the `dec_pos` argument to set the number of positions 
+following the decimal to be displayed in the table.
+
+```{r}
+table <- create_table(words$first_letter,
+                      dec_pos = 3)
+
+table
+```
+
+In this case, the frequency distribution table provides a row for each unique 
+first letter in the dataset, arranged in descending order of count, with the frequency, cumulative count and cumulative frequency for each first letter.
+
+To plot the data in a Pareto chart, pass the `table` data frame to the 
+`create_pareto` function along with character strings for the plot labels.
+
+```{r}
+create_pareto(table,
+              title = "Pareto Chart",
+              subtitle = "Frequency of first letters in Joyce's 'The Dead'",
+              x_label = "Letter",
+              y_label = "Frequency",
+              caption = "Chart generated using the built-in words data.")
 ```
