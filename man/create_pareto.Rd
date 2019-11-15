@@ -4,14 +4,8 @@
 \alias{create_pareto}
 \title{Create Pareto Chart}
 \usage{
-create_pareto(
-  df,
-  title = "Pareto Chart",
-  subtitle = "",
-  caption = "",
-  x_label = "Groups",
-  y_label = "Frequency"
-)
+create_pareto(df, title = "Pareto Chart", subtitle = "",
+  caption = "", x_label = "Groups", y_label = "Frequency")
 }
 \arguments{
 \item{df}{Data frame containing a frequency distribution table.}
