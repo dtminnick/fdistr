@@ -34,8 +34,8 @@ a message will be printed to the console and the function will return NULL.
 cumulative frequency columns of a frequency distribution table.
 }
 \examples{
-\dontrun{
-plot <- create_pareto(df)
-}
+source <- c(1, 1, 1, 1, 2, 2, 2, 3, 3, 4)
+table <- create_table(source, dec_pos = 3)
+plot <- create_pareto(table)
 
 }
