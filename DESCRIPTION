@@ -1,6 +1,6 @@
 Package: fdistr
 Type: Package
-Title: Frequency Distribution Tables in R
+Title: Frequency Distribution Tables
 Version: 0.1.0
 Date: 2019-11-06
 Authors@R: person("Donnie", "Minnick", , "donnie.minnick@gmail.com", c("aut", "cre"))

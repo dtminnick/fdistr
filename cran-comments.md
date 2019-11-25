@@ -1,3 +1,12 @@
+
+## Resubmission
+
+* Removed redundant "in R" in DESCRIPTION file.
+
+* Replaced print() with warning() and stop().
+
+* Removed \dontrun{} wrapper from code examples.
+
 ## Test environments
 * local Windows 10, R 3.6.1, R-devel
 * macOS 10.13.3 (on travis-ci), R 3.6.1

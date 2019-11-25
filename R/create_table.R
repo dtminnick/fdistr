@@ -22,10 +22,8 @@
 #' @importFrom magrittr "%>%"
 #'
 #' @examples
-#' \dontrun{
-#' source <- c(1, 1, 2, 2, 3, 3, 4, 4)
-#' table <- create_table(source, dec_pos = 4)
-#' }
+#' source <- c(1, 1, 1, 1, 2, 2, 2, 3, 3, 4)
+#' table <- create_table(source, dec_pos = 3)
 #'
 #' @export
 
@@ -62,13 +60,13 @@ create_table <- function(source,
 
       }, warning = function(w) {
 
-            print(paste("create_table: ", w, sep = ""))
+            warning(paste("create_table: ", w, sep = ""))
 
             return(NULL)
 
       }, error = function(e) {
 
-            print(paste("create_table: ", e, sep = ""))
+            stop(paste("create_table: ", e, sep = ""))
 
             return(NULL)
 

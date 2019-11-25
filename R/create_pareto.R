@@ -30,9 +30,9 @@
 #' @importFrom stats reorder
 #'
 #' @examples
-#' \dontrun{
-#' plot <- create_pareto(df)
-#' }
+#' source <- c(1, 1, 1, 1, 2, 2, 2, 3, 3, 4)
+#' table <- create_table(source, dec_pos = 3)
+#' plot <- create_pareto(table)
 #'
 #' @export
 
@@ -73,13 +73,13 @@ create_pareto <- function(df,
 
       }, warning = function(w) {
 
-            print(paste("create_pareto: ", w, sep = ""))
+            warning(paste("create_pareto: ", w, sep = ""))
 
             return(NULL)
 
       }, error = function(e) {
 
-            print(paste("create_pareto: ", e, sep = ""))
+            stop(paste("create_pareto: ", e, sep = ""))
 
             return(NULL)
 
