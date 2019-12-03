@@ -7,6 +7,8 @@
 
 [![Travis build
 status](https://travis-ci.org/dtminnick/fdistr.svg?branch=master)](https://travis-ci.org/dtminnick/fdistr)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fdistr)](https://CRAN.R-project.org/package=fdistr)
 <!-- badges: end -->
 
 The goal of fdistr is to provide an efficient way to create frequency
