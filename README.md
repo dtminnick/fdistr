@@ -9,6 +9,8 @@
 status](https://travis-ci.org/dtminnick/fdistr.svg?branch=master)](https://travis-ci.org/dtminnick/fdistr)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fdistr)](https://CRAN.R-project.org/package=fdistr)
+[![Codecov test
+coverage](https://codecov.io/gh/dtminnick/fdistr/branch/master/graph/badge.svg)](https://codecov.io/gh/dtminnick/fdistr?branch=master)
 <!-- badges: end -->
 
 The goal of fdistr is to provide an efficient way to create frequency

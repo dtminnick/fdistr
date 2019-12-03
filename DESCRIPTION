@@ -23,5 +23,6 @@ Imports:
 Suggests:
     knitr (>= 1.22),
     rmarkdown (>= 1.12),
-    testthat (>= 2.2.1)
+    testthat (>= 2.2.1),
+    covr
 RoxygenNote: 7.0.0

@@ -13,9 +13,9 @@ test_that("frequency table has the proper structure", {
                                             "cumulative_count",
                                             "cumulative_frequency")))
       expect_that(ncol(table), equals(5))
-      expect_that(nrow(table), equals(9))
+      expect_that(nrow(table), equals(11))
       expect_that(sum(table$count), equals(table$cumulative_count[nrow(table)]))
-      expect_that(sum(table$frequency), equals(1))
+      expect_that(round(sum(table$frequency)), equals(1))
       expect_that(table$cumulative_frequency[nrow(table)], equals(1))
       expect_that(table$group, is_a("character"))
       expect_that(table$count, is_a("integer"))
