@@ -1,7 +1,7 @@
 
 #' Words Dataset
 #'
-#' A sample set of words taken from the first paragraph of James Joyce's
+#' Sample set of words taken from the first paragraph of James Joyce's
 #' short story "The Dead" to demonstrate the functionality in this package.
 #'
 #' The dataset includes the following variables:
