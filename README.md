@@ -13,17 +13,15 @@ status](https://www.r-pkg.org/badges/version/fdistr)](https://CRAN.R-project.org
 coverage](https://codecov.io/gh/dtminnick/fdistr/branch/master/graph/badge.svg)](https://codecov.io/gh/dtminnick/fdistr?branch=master)
 <!-- badges: end -->
 
-The goal of fdistr is to provide an efficient way to create frequency
+The fdistr package provides an efficient way to create frequency
 distribution tables and use those tables to generate Pareto charts.
 
-Frequency distribution tables are used to show the frequency of various
-outcomes in a data set. Each entry in the table contains a frequency or
-count of the occurrences of values within a particular group or
-interval, and in this way, the table summarizes the distribution of
-values in the data set.
+Frequency distribution tables show the frequency of various outcomes in
+a data set. Each entry in the table contains a frequency or count of
+values within a particular group or interval, and in this way, the table
+summarizes the distribution of values in the data set.
 
-A Pareto chart is a bar graph visually depicts the frequency
-distribution table.
+A Pareto chart visually depicts the frequency distribution table.
 
 ## Installation
 
@@ -43,11 +41,11 @@ devtools::install_github("dtminnick/fdistr")
 
 ## Example
 
-What follows is a basic example which shows you how to use the fdistr
-package with the built-in `words` dataset.
+This basic example which shows you how to use the fdistr package with
+the built-in `words` dataset.
 
 Start by loading the `words` dataset. The dataset contains a data frame
-with four variables about a collection of words taken from the first
+with six variables about a collection of words taken from the first
 paragraph of James Joyce’s short story “The Dead.”
 
 ``` r
@@ -64,15 +62,14 @@ str(words)
 ```
 
 It is possible to create a frequency distribution table with any of the
-four variables in this table. For this example, pass the `first_letter`
+six variables in this table. For this example, pass the `first_letter`
 variable to the `create_table` function and return the table (stored as
 a data frame) to a variable called `table`. Use the `dec_pos` argument
 to set the number of positions following the decimal to be displayed in
 the table.
 
 ``` r
-table <- create_table(words$first_letter,
-                      dec_pos = 3)
+table <- create_table(words$first_letter, dec_pos = 3)
 
 table
 #>    group count frequency cumulative_count cumulative_frequency
@@ -93,8 +90,8 @@ table
 #> 15     r     1     0.018               55                1.000
 ```
 
-In this case, the frequency distribution table provides a row for each
-unique first letter in the dataset, arranged in descending order of
+In this example, the frequency distribution table provides a row for
+each unique first letter in the dataset, arranged in descending order of
 count, with the frequency, cumulative count and cumulative frequency for
 each first letter.
 
@@ -112,3 +109,8 @@ create_pareto(table,
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+Bars in the chart show the frequency of each first letter and a line
+shows the cumulative frequency with points to highlight the cumulative
+frequency for each value above the bars. The Pareto chart is an
+effective way to show the frequencies of values.
