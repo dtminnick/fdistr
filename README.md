@@ -54,11 +54,13 @@ library(fdistr)
 data(words)
 
 str(words)
-#> 'data.frame':    55 obs. of  4 variables:
-#>  $ word        : chr  "lily" "the" "caretaker’s" "daughter" ...
+#> 'data.frame':    127 obs. of  6 variables:
+#>  $ word        : chr  "lily" "the" "caretaker's" "daughter" ...
 #>  $ first_letter: chr  "l" "t" "c" "d" ...
 #>  $ last_letter : chr  "y" "e" "s" "r" ...
 #>  $ letter_count: int  4 3 11 8 3 9 3 3 3 4 ...
+#>  $ starts_with : chr  "consonant" "consonant" "consonant" "consonant" ...
+#>  $ ends_with   : chr  "consonant" "vowel" "consonant" "consonant" ...
 ```
 
 It is possible to create a frequency distribution table with any of the
@@ -73,21 +75,27 @@ table <- create_table(words$first_letter, dec_pos = 3)
 
 table
 #>    group count frequency cumulative_count cumulative_frequency
-#> 1      h     9     0.164                9                0.164
-#> 2      t     9     0.164               18                0.327
-#> 3      o     6     0.109               24                0.436
-#> 4      a     5     0.091               29                0.527
-#> 5      b     4     0.073               33                0.600
-#> 6      l     4     0.073               37                0.673
-#> 7      g     3     0.055               40                0.727
-#> 8      s     3     0.055               43                0.782
-#> 9      w     3     0.055               46                0.836
-#> 10     c     2     0.036               48                0.873
-#> 11     f     2     0.036               50                0.909
-#> 12     i     2     0.036               52                0.945
-#> 13     d     1     0.018               53                0.964
-#> 14     p     1     0.018               54                0.982
-#> 15     r     1     0.018               55                1.000
+#> 1      t    22     0.173               22                0.173
+#> 2      a    16     0.126               38                0.299
+#> 3      h    16     0.126               54                0.425
+#> 4      o    10     0.079               64                0.504
+#> 5      l     8     0.063               72                0.567
+#> 6      w     8     0.063               80                0.630
+#> 7      b     7     0.055               87                0.685
+#> 8      c     5     0.039               92                0.724
+#> 9      s     5     0.039               97                0.764
+#> 10     d     4     0.031              101                0.795
+#> 11     f     4     0.031              105                0.827
+#> 12     g     4     0.031              109                0.858
+#> 13     i     4     0.031              113                0.890
+#> 14     m     4     0.031              117                0.921
+#> 15     j     2     0.016              119                0.937
+#> 16     k     2     0.016              121                0.953
+#> 17     p     2     0.016              123                0.969
+#> 18     e     1     0.008              124                0.976
+#> 19     n     1     0.008              125                0.984
+#> 20     r     1     0.008              126                0.992
+#> 21     u     1     0.008              127                1.000
 ```
 
 In this example, the frequency distribution table provides a row for
@@ -114,3 +122,25 @@ Bars in the chart show the frequency of each first letter and a line
 shows the cumulative frequency with points to highlight the cumulative
 frequency for each value above the bars. The Pareto chart is an
 effective way to show the frequencies of values.
+
+When working with a continuous variable, such as ’letter\_count`in
+the`words`dataset, the`create\_ecdf\` function creates an empirical
+cumulative distribution function, or ECDF, plot. The ECDF plot shows the
+proportion of observations that are less than or equal to each obverved
+value.
+
+``` r
+create_ecdf(words$letter_count,
+            title = "ECDF Chart",
+            subtitle = "ECDF of letter counts in Joyce's 'The Dead'",
+            x_label = "Letter Count",
+            y_label = "Frequency",
+            caption = "Chart generated using the built-in words data.")
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+The height of each step in the plot is the frequency of each value in
+the observed data and the length of each horizontal line shows the
+distance between values. Dashed vertical lines plot the quartiles along
+with their values on the x-axis.

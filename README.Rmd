@@ -94,3 +94,21 @@ Bars in the chart show the frequency of each first letter and a line shows the
 cumulative frequency with points to highlight the cumulative frequency for each
 value above the bars.  The Pareto chart is an effective way to show the frequencies
 of values.
+
+When working with a continuous variable, such as 'letter_count` in the `words` dataset,
+the `create_ecdf` function creates an empirical cumulative distribution function, 
+or ECDF, plot.  The ECDF plot shows the proportion of observations that are less
+than or equal to each obverved value.
+
+```{r}
+create_ecdf(words$letter_count,
+            title = "ECDF Chart",
+            subtitle = "ECDF of letter counts in Joyce's 'The Dead'",
+            x_label = "Letter Count",
+            y_label = "Frequency",
+            caption = "Chart generated using the built-in words data.")
+```
+
+The height of each step in the plot is the frequency of each value in the observed
+data and the length of each horizontal line shows the distance between values.
+Dashed vertical lines plot the quartiles along with their values on the x-axis.
