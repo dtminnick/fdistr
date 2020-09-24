@@ -41,27 +41,31 @@ create_pareto <- function(df,
                           subtitle = "",
                           caption = "",
                           x_label = "Groups",
-                          y_label = "Frequency") {
+                          y_label = "Count") {
 
       tryCatch({
 
             group <- frequency <- cumulative_frequency <- NULL
 
+            scale_right <- tail(df$cumulative_frequency, n = 1) / head(df$count, n = 1)
+
             g <- ggplot2::ggplot(df, ggplot2::aes(x = stats::reorder(group, -frequency))) +
 
-                  ggplot2::geom_bar(ggplot2::aes(y = frequency),
+                  ggplot2::geom_bar(ggplot2::aes(y = count),
                                     fill = "blue",
                                     stat = "identity") +
 
-                  ggplot2::geom_point(ggplot2::aes(y = cumulative_frequency),
+                  ggplot2::geom_point(ggplot2::aes(y = cumulative_frequency / scale_right),
                                       color = "green",
                                       pch = 16,
                                       size = 1) +
 
-                  ggplot2::geom_path(ggplot2::aes(y = cumulative_frequency, group = 1),
+                  ggplot2::geom_path(ggplot2::aes(y = cumulative_frequency / scale_right, group = 1),
                                      colour = "darkgrey",
                                      lty = 3,
                                      size = 0.9) +
+
+                  ggplot2::scale_y_continuous(sec.axis = sec_axis(~.*scale_right, name = "Cumulative (%)")) +
 
                   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 0, vjust = 0.6)) +
 
