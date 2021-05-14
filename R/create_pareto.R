@@ -65,7 +65,7 @@ create_pareto <- function(df,
                                      lty = 3,
                                      size = 0.9) +
 
-                  ggplot2::scale_y_continuous(sec.axis = sec_axis(~.*scale_right, name = "Cumulative (%)")) +
+                  ggplot2::scale_y_continuous(sec.axis = ggplot2::sec_axis(~.*scale_right, name = "Cumulative (%)")) +
 
                   ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 0, vjust = 0.6)) +
 
