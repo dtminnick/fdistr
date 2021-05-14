@@ -95,10 +95,10 @@ cumulative frequency with points to highlight the cumulative frequency for each
 value above the bars.  The Pareto chart is an effective way to show the frequencies
 of values.
 
-When working with a continuous variable, such as 'letter_count` in the `words` dataset,
+When working with a continuous variable, such as 'letter_count' in the `words` dataset,
 the `create_ecdf` function creates an empirical cumulative distribution function, 
 or ECDF, plot.  The ECDF plot shows the proportion of observations that are less
-than or equal to each obverved value.
+than or equal to each observed value.
 
 ```{r}
 create_ecdf(words$letter_count,
